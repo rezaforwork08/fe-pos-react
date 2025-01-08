@@ -13,7 +13,7 @@ const ProductItem = ({ product, onSelect }: any) => {
         <div className="flex pb-3 px-3 text-sm mt-3 flex-col">
             <p className="flex-grow truncate mr-1 font-semibold">{product.name}</p>
             <div className="flex justify-between mt-3">
-                <span className='bg-red-100 text-red-500 rounded px-3 text-xs py-1'>Category</span>
+                <span className='bg-red-100 text-red-500 rounded px-3 text-xs py-1'>{product.category}</span>
                 <p className="nowrap font-semibold">{new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(product.price)}</p>
             </div>
         </div>

@@ -7,6 +7,7 @@ import Cart from './components/Cart';
 import Checkout from './components/Checkout';
 import button from './assets/button-21.mp3';
 import Receipt from './components/Receipt';
+import Filter from './components/Filter';
 
 function App() {
   const initItems: any[] = [];
@@ -14,7 +15,11 @@ function App() {
   const [cartItems, setCartItems] = useState(initItems);
   const [showReceipt, setShowReceipt] = useState(false);
   const [cash, setCash] = useState(0);
+  const [selectedFilter, setselectedFilter] = useState('')
 
+  const handeFilter = ()=>{
+    setselectedFilter(selectedFilter)
+  }
   return (
     <>
       <div className="hide-print flex flex-row h-screen antialiased text-blue-gray-800">
@@ -24,11 +29,13 @@ function App() {
         </div>
         <div className="flex-grow flex">
           <div className="flex flex-col bg-blue-gray-50 h-full w-full py-4">
+
             <ProductSearch onSearch={(searchKey: string) => {
               setSearchKey(searchKey);
             }} />
+
             <div className="h-full overflow-hidden mt-4">
-              <ProductMenu searchKey={searchKey} onSelect={(product: any) => {
+              <ProductMenu onFilter={handeFilter} searchKey={searchKey} onSelect={(product: any) => {
                 let found = false;
                 for (var i = 0; i < cartItems.length; i++) {
                   if (cartItems[i].product.name === product.name) {
@@ -40,11 +47,11 @@ function App() {
                 if (!found) {
                   cartItems.push({ product, quantity: 1 });
                 }
-
                 setCartItems([...cartItems]);
               }} />
             </div>
           </div>
+
           <div className="w-5/12 flex flex-col bg-blue-gray-50 h-full bg-white pr-4 pl-2 py-4">
             <div className="bg-white rounded-3xl flex flex-col h-full shadow">
               <div className="flex-1 flex flex-col overflow-auto">
@@ -105,8 +112,8 @@ function App() {
               sound.src = button;
               sound.play();
             }}
-            onClose={() => setShowReceipt(false)} 
-            />
+            onClose={() => setShowReceipt(false)}
+          />
         }
       </div>
       <div id="print-area" className="print-area"></div>

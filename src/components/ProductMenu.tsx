@@ -20,61 +20,71 @@ const products = [
     {
         name: 'Burger',
         image: burger,
-        price: 25000
+        price: 25000,
+        category: 'Snack'
     },
     {
         name: 'Donut',
         price: 15000,
-        image: donut
+        image: donut,
+        category: 'Snack'
     },
     {
         name: 'Sandwich',
         image: sandwich,
-        price: 35000
+        price: 35000,
+        category: 'Snack'
     },
     {
         name: 'Cinnamon Roll',
         image: cinnamonroll,
-        price: 50000
+        price: 50000,
+        category: 'Snack'
     },
     {
         name: 'Crosaint',
         image: crosaint,
-        price: 20000
+        price: 20000,
+        category: 'Snack'
     },
     {
         name: 'Espresso',
         image: espresso,
-        price: 40000
+        price: 40000,
+        category: 'Coffe'
     },
     {
         name: 'Frappe',
         image: frappe,
-        price: 35000
+        price: 35000,
+        category: 'Ice Cream'
     },
     {
         name: 'Milk Tea',
         image: milktea,
-        price: 15000
+        price: 15000,
+        category: 'Drink'
     },
     {
         name: 'Black Coffee',
         image: blackcoffee,
-        price: 10000
+        price: 10000,
+        category: 'Coffe'
     }
 ];
 
 
-const ProductMenu = ({ searchKey, onSelect }: any) => {
+const ProductMenu = ({ searchKey, onSelect, onFilter }: any) => {
+
     return <div className="h-full overflow-y-auto px-2">
-    <div className="grid grid-cols-4 gap-4 pb-3">
-        {
-            products
-                .filter(product => !searchKey || product.name.toLowerCase().indexOf(searchKey.toLowerCase()) > -1)
-                .map((product, index) => <ProductItem key={index} product={product} onSelect={onSelect}/>)
-        }
-    </div>
-  </div>;
+        <div className="grid grid-cols-4 gap-4 pb-3">
+            {
+                products
+                    .filter(product => !searchKey || product.name.toLowerCase().indexOf(searchKey.toLowerCase()) > -1)
+                    .map((product, index) => <ProductItem key={index} product={product} onSelect={onSelect} />)
+            }
+        </div>
+    </div>;
 };
 
 export default ProductMenu; 
